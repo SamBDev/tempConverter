@@ -50,22 +50,52 @@ function determineConverter () {
 	// is checked
 	if (radios[0].checked === true){
 		outputTemp = toFahrenheit(inputTemp);
-		console.log("output temp: ", outputTemp);
+		dumptToHTML(outputTemp);
 		}
 
-	// handles if SECOND radio button is (in this case celsius)
+	// handles if SECOND radio button (in this case celsius)
 	// is checked
 	if (radios[1].checked === true){
 		outputTemp = toCelsius(inputTemp);
-		console.log("output temp: ", outputTemp);
+		dumptToHTML(outputTemp);
 		}
 
 	// handles if somehow both radios buttons are checked - should not
 	// happen. done because I had to give up on trying to use switch:
+	// and that bothered me
 	if (radios[0].checked === true && radios[1] === true){
 		alert("Congrats, you broke it. Please stop");
 		}
 }
 
+// clear the input box - as required
+function clear(){
+	document.getElementById("userTemp").value = "";
+}
+
+// take the converted temperature and cram it into the DOM
+function dumptToHTML(outputTemp){
+
+	// get the output location in the DOM and store it
+	let temperatureLocation = document.getElementById("temperatureResult");
+
+	// clear previous conversions
+	temperatureLocation.innerHTML = "";
+	// temperatureLocation.removeClass(*);
+
+	// create a textNode then append to an element which is
+	// then appended to the output location
+	let temperatureNode = document.createTextNode(outputTemp);
+	let temperatureElement = document.createElement("p");
+	temperatureElement.appendChild(temperatureNode);
+	temperatureLocation.appendChild(temperatureElement);
+
+}
+
 // Assign a function to be executed when the button is clicked
 document.getElementById("convert").addEventListener("click", determineConverter);
+document.getElementById("clear").addEventListener("click", clear);
+document.getElementById("userTemp").addEventListener("keydown", function(){
+	var keyResult = event.which;
+	if (keyResult === 13) {determineConverter()}
+});
