@@ -31,13 +31,14 @@ function toFahrenheit (inputTemp) {
 function determineConverter () {
 
 	// debugging
-	console.log("function called");
+	// console.log("function called");
 
 	// assign variables to be used
 	const radios = document.getElementsByName("whichTemp");
-	let inputTemp = document.getElementById("userTemp");
+	let inputTemp = document.getElementById("userTemp").value;
 	let outputTemp;
 
+	// more debugging
 	console.log("input temp: ", inputTemp);
 
 	// handles if neither radio is checked
