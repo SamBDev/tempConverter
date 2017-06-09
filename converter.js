@@ -30,22 +30,32 @@ function toFahrenheit (inputTemp) {
 // happen based on which radio button is selected.
 function determineConverter () {
 
+	// debugging
 	console.log("function called");
+
+	// assign variables to be used
 	const radios = document.getElementsByName("whichTemp");
 	const inputTemp = document.getElementById("userTemp");
 
+	// handles if neither radio is checked
 	if (radios[0].checked === false && radios[1].checked === false){
 		alert("You have not decided on a temperature setting!");
 		}
 
+	// handles if FIRST radio button (in this case fahrenheit)
+	// is checked
 	if (radios[0].checked === true){
 		toFahrenheit(inputTemp);
 		}
 
+	// handles if SECOND radio button is (in this case celsius)
+	// is checked
 	if (radios[1].checked === true){
 		toCelsius(inputTemp);
 		}
 
+	// handles if somehow both radios buttons are checked - should not
+	// happen
 	if (radios[0].checked === true && radios[1] === true){
 		alert("Congrats, you broke it. Please stop");
 		}
