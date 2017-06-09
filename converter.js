@@ -8,7 +8,7 @@ function toCelsius (inputTemp) {
 
 	// otherwise run the calculation
 	else {
-
+		return ((inputTemp-32)*5/9);
 	}
 }
 
@@ -22,7 +22,7 @@ function toFahrenheit (inputTemp) {
 
 	// otherwise run the calculation
 	else {
-
+		return (inputTemp*9/5+32);
 	}
 }
 
@@ -35,7 +35,10 @@ function determineConverter () {
 
 	// assign variables to be used
 	const radios = document.getElementsByName("whichTemp");
-	const inputTemp = document.getElementById("userTemp");
+	let inputTemp = document.getElementById("userTemp");
+	let outputTemp;
+
+	console.log("input temp: ", inputTemp);
 
 	// handles if neither radio is checked
 	if (radios[0].checked === false && radios[1].checked === false){
@@ -45,17 +48,19 @@ function determineConverter () {
 	// handles if FIRST radio button (in this case fahrenheit)
 	// is checked
 	if (radios[0].checked === true){
-		toFahrenheit(inputTemp);
+		outputTemp = toFahrenheit(inputTemp);
+		console.log("output temp: ", outputTemp);
 		}
 
 	// handles if SECOND radio button is (in this case celsius)
 	// is checked
 	if (radios[1].checked === true){
-		toCelsius(inputTemp);
+		outputTemp = toCelsius(inputTemp);
+		console.log("output temp: ", outputTemp);
 		}
 
 	// handles if somehow both radios buttons are checked - should not
-	// happen
+	// happen. done because I had to give up on trying to use switch:
 	if (radios[0].checked === true && radios[1] === true){
 		alert("Congrats, you broke it. Please stop");
 		}
